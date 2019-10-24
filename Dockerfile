@@ -35,7 +35,7 @@ RUN echo "Downloading and building OpenPose..." && \
 	git clone https://github.com/CMU-Perceptual-Computing-Lab/openpose.git && \
 	mkdir -p /openpose/build && \
 	cd /openpose/build && \
-	cmake .. && \
+	cmake -DBUILD_PYTHON=ON -DDOWNLOAD_BODY_COCO_MODEL=ON .. && \
 	make -j`nproc`
 
 WORKDIR /openpose

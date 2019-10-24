@@ -1,16 +1,25 @@
-# openpose-docker
-Dockerfile to build the excellent OpenPose software from CMU.
+# openpose-realsteel
+Based off of https://github.com/ExSidius/openpose-docker, but includes Python API and COCO Model support
 
-Ensure that you have `nvidia-docker` installed before you download this image.
+Dockerfile to build OpenPose from CMU
+
+Ensure that you have [`nvidia-docker`](https://github.com/NVIDIA/nvidia-docker#quickstart) installed before you download this image.
 
 To run the container, use the following commmand - 
 
 ```bash
 xhost +
-docker run -it --net=host -e DISPLAY --runtime=nvidia <container-id>
+docker run -it --net=host -e DISPLAY --runtime=nvidia --device=/dev/video0:/dev/video0 <image-id>
 ```
 
-Supports - 
-1. CUDA 10
-2. CUDnn 7
-3. Python 3 (will be 3.7 soon)
+To run the webcam demo, use
+
+```
+./build/examples/openpose/openpose.bin --model_pose COCO --net_resolution "-1x160"
+```
+
+as Olin Laptops have 2005MB of memory and therefore need to use the COCO model at a lower net resolution.
+
+Check with `nvidia-smi`.
+
+Uses: CUDA 10, CUDnn 7
