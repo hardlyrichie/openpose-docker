@@ -9,7 +9,7 @@ To run the container, use the following commmand -
 
 ```bash
 xhost +
-docker run -it --net=host -e DISPLAY --runtime=nvidia --device=/dev/video0:/dev/video0 <image-id>
+docker run -it --net=host -e DISPLAY -e QT_X11_NO_MITSHM=1 --runtime=nvidia --device=/dev/video0:/dev/video0 <image-id>
 ```
 
 To run the webcam demo, use
@@ -18,7 +18,7 @@ To run the webcam demo, use
 ./build/examples/openpose/openpose.bin --model_pose COCO --net_resolution "-1x160"
 ```
 
-as Olin Laptops have 2005MB of memory and therefore need to use the COCO model at a lower net resolution.
+As Olin Laptops have 2005MB of GPU memory and therefore need to use the COCO model at a lower net resolution.
 
 Check with `nvidia-smi`.
 
